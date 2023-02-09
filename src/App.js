@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import * as api from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>Edit src/App.js and save to reload.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  handleChange = async () => {
+    const categories = await api.getCategories();
+    console.log(categories);
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <button
+          onClick={ this.handleChange }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Teste
+        </button>
+      </div>
+    );
+  }
 }
 
 export default App;
