@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Link, Route } from 'react-router-dom';
 import * as api from './services/api';
 import Home from './components/pages/Home';
+import ShoppingCart from './components/ShoppingCart';
 
 class App extends React.Component {
   // handleChange = ({ target }) => {
@@ -14,6 +15,7 @@ class App extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={ Home } />
+        <Route path="/shopping-cart" component={ ShoppingCart } />
       </Switch>
     );
   }
