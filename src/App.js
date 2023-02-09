@@ -1,22 +1,20 @@
 import React from 'react';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
 import * as api from './services/api';
+import Home from './components/pages/Home';
 
 class App extends React.Component {
-  handleChange = async () => {
-    const categories = await api.getCategories();
-    console.log(categories);
-  };
+  // handleChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   this.setState({ [name]: value });
+  // };
 
   render() {
     return (
-      <div className="App">
-        <button
-          onClick={ this.handleChange }
-        >
-          Teste
-        </button>
-      </div>
+      <Switch>
+        <Route exact path="/" component={ Home } />
+      </Switch>
     );
   }
 }
