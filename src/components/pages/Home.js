@@ -1,8 +1,9 @@
-import React from 'react';
+import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories } from '../../services/api';
 // import Product from '../Product';
 
-class Home extends React.Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = ({
@@ -102,6 +103,9 @@ class Home extends React.Component {
           {' '}
 
         </button>
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de Compras
+        </Link>
         { queryResults
           .length > 0 && queryResults
           .map((product) => (
