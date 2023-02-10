@@ -1,61 +1,129 @@
-import React from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../../services/api';
+// import Product from '../Product';
 
-class Home extends React.Component {
-  state = {
-    categories: [],
-  };
-
-  async componentDidMount() {
-    const dataCategories = await getCategories();
-    this.setState({ categories: dataCategories });
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      categories: [],
+      value: '',
+      queryResults: [],
+      isQueryDone: false,
+    });
   }
 
+  componentDidMount() {
+    this.fetchCategories();
+  }
+
+  fetchCategories = async () => {
+    const gotCategories = await getCategories();
+    console.log(gotCategories);
+    this.setState({
+      categories: gotCategories,
+    });
+  };
+
   handleChange = ({ target }) => {
-    const { name, value } = target;
-    this.setState({ [name]: value });
+    const { value } = target;
+    this.setState({
+      value,
+    });
+  };
+
+  handleButton = async () => {
+    const { value, queryResults } = this.state;
+    const queryAns = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${value}`);
+    const queryAnsOk = await queryAns.json();
+    const finalAns = queryAnsOk;
+    this.setState(
+      {
+        queryResults: finalAns.results,
+        isQueryDone: true },
+      () => console.log(queryResults),
+    );
+  };
+
+  radioChange = async ({ target }) => {
+    const { value } = target;
+    const categoryListB = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${value}`);
+    const categoryList = await categoryListB.json();
+    this.setState({
+      selectedCategoryId: value,
+      queryResults: categoryList.results,
+    });
   };
 
   render() {
-    const { categories } = this.state;
+    const { categories, queryResults, isQueryDone, selectedCategoryId } = this.state;
+    // const { results } = queryResults;
     return (
       <div>
-        <label
-          htmlFor=""
-        >
-          <input
-            type="text"
-            name="search"
-          />
-        </label>
         <h1
           data-testid="home-initial-message"
         >
           Digite algum termo de pesquisa ou escolha uma categoria.
+
         </h1>
-        <Link
-          data-testid="shopping-cart-button"
-          to="/shopping-cart"
+        {
+          categories.map((category) => (
+            <li key={ category.id }>
+              <input
+                data-testid="category"
+                type="radio"
+                name="categorieList"
+                value={ category.id }
+                checked={ category.id === selectedCategoryId }
+                onChange={ this.radioChange }
+              />
+              <h4>{ category.name }</h4>
+            </li>
+          ))
+        }
+        <label
+          htmlFor="search"
         >
-          Shopping Cart
+          <input
+            data-testid="query-input"
+            type="text"
+            id="search"
+            name="search"
+            onChange={ this.handleChange }
+          />
+        </label>
+        <button
+          data-testid="query-button"
+          type="submit"
+          onClick={ this.handleButton }
+        >
+          {' '}
+          clica
+          {' '}
+
+        </button>
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de Compras
         </Link>
-        {categories.map((cat) => (
-          <label
-            data-testid="category"
-            htmlFor="category"
-            key={ cat.id }
-          >
-            <button
-              type="radio"
-              name="category"
-              value={ cat.id }
-              onChange={ this.handleChange }
-            >
-              <p>{cat.name}</p>
-            </button>
-          </label>
-        ))}
+        { queryResults
+          .length > 0 && queryResults
+          .map((product) => (
+            <div key={ product.id } data-testid="product">
+              <h3>{ product.title }</h3>
+              <img alt={ product.title } src={ product.thumbnail } />
+              <h4>
+                R$:
+                { product.price }
+              </h4>
+              <Link data-testid="product-detail-link" to={ `./product/${product.id}` }>
+                Detalhes do produto
+              </Link>
+            </div>
+          ))}
+        {
+          queryResults.length === 0 && isQueryDone && <p>Nenhum produto foi encontrado</p>
+        }
       </div>
     );
   }
