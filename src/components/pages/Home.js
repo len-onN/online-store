@@ -116,6 +116,9 @@ class Home extends Component {
                 R$:
                 { product.price }
               </h4>
+              <Link data-testid="product-detail-link" to={ `./product/${product.id}` }>
+                Detalhes do produto
+              </Link>
             </div>
           ))}
         {

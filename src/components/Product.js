@@ -1,30 +1,52 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Product extends Component {
-  constructor(props) {
-    super(props);
-    this.state({
+  constructor() {
+    super();
+    this.state = ({
       product: [],
     });
   }
 
+  componentDidMount() {
+    this.fetchProduct();
+  }
+
+  fetchProduct = async () => {
+    const { match: { params } } = this.props;
+    const product = await fetch(`https://api.mercadolibre.com/items/${params.id}`);
+    const treatedProduct = await product.json();
+    this.setState({
+      product: treatedProduct,
+    });
+  };
+
   render() {
-    // const { product } = this.props;
+    const { product } = this.state;
     return (
       <div>
-        <p>{/* product.title */}</p>
+        <h2 data-testid="product-detail-name">{ product.title }</h2>
+        <img
+          data-testid="product-detail-image"
+          src={ product.thumbnail }
+          alt={ product.title }
+        />
+        <h4 data-testid="product-detail-price">{ product.price }</h4>
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+          Carrinho de Compras
+        </Link>
       </div>
     );
   }
 }
 
 Product.propTypes = {
-  product: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    thumbnail: PropTypes.string,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 export default Product;
