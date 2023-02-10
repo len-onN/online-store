@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShoppingCart from './components/ShoppingCart';
+import Product from './components/Product';
 
 class App extends React.Component {
   // handleChange = ({ target }) => {
@@ -14,7 +15,9 @@ class App extends React.Component {
     return (
       <Switch>
         <Route exact path="/" component={ Home } />
-        <Route path="/shopping-cart" component={ ShoppingCart } />
+        {/* <Route exact path="/product" component={ Product } /> */}
+        <Route exact path="/shopping-cart" component={ ShoppingCart } />
+        <Route path="/product/:id" render={ (props) => <Product { ...props } /> } />
       </Switch>
     );
   }
