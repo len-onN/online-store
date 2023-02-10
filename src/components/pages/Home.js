@@ -45,8 +45,18 @@ class Home extends React.Component {
     );
   };
 
+  radioChange = async ({ target }) => {
+    const { value } = target;
+    const categoryListB = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${value}`);
+    const categoryList = await categoryListB.json();
+    this.setState({
+      selectedCategoryId: value,
+      queryResults: categoryList.results,
+    });
+  };
+
   render() {
-    const { categories, queryResults, isQueryDone } = this.state;
+    const { categories, queryResults, isQueryDone, selectedCategoryId } = this.state;
     // const { results } = queryResults;
     return (
       <div>
@@ -57,8 +67,18 @@ class Home extends React.Component {
 
         </h1>
         {
-          categories.map((categorie) => (
-            <li data-testid="category" key={ categorie.id }>{ categorie.name }</li>
+          categories.map((category) => (
+            <li key={ category.id }>
+              <input
+                data-testid="category"
+                type="radio"
+                name="categorieList"
+                value={ category.id }
+                checked={ category.id === selectedCategoryId }
+                onChange={ this.radioChange }
+              />
+              <h4>{ category.name }</h4>
+            </li>
           ))
         }
         <label
