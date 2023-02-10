@@ -18,6 +18,7 @@ class Product extends Component {
     const { match: { params } } = this.props;
     const product = await fetch(`https://api.mercadolibre.com/items/${params.id}`);
     const treatedProduct = await product.json();
+    // voiala
     this.setState({
       product: treatedProduct,
     });
