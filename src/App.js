@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Switch, Link, Route } from 'react-router-dom';
-import * as api from './services/api';
+import { Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShoppingCart from './components/ShoppingCart';
 
