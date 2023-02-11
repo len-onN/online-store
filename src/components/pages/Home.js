@@ -59,7 +59,10 @@ class Home extends Component {
 
   addToCart = (product) => {
     const { cartProduct } = this.state;
-    cartProduct.push(product);
+    if (!cartProduct.some((crtPrdct) => crtPrdct.id === product.id)) {
+      cartProduct.push(product);
+      localStorage.setItem('cartList', JSON.stringify(cartProduct));
+    }
     this.setState({
       cartProduct,
     });

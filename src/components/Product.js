@@ -25,12 +25,13 @@ class Product extends Component {
   };
 
   addToCart = (product) => {
-    const { location: state } = this.props;
-    state.state.push(product);
-    // console.log(state);
-    // console.log(product);
+    const { location: { state: { state } } } = this.props;
+    if (!state.some((crtPdct) => crtPdct.id === product.id)) {
+      state.push(product);
+      localStorage.setItem('cartList', JSON.stringify(state));
+    }
     this.setState({
-      cartProduct: state.state,
+      cartProduct: state,
     });
   };
 
@@ -69,12 +70,13 @@ Product.propTypes = {
     }).isRequired,
   }).isRequired,
   location: PropTypes.shape({
-    state: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        id: PropTypes.string,
-      }),
-    ),
+    state: PropTypes.shape({
+      state: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          id: PropTypes.string,
+        }),
+      ) }),
   }).isRequired,
 };
 export default Product;
