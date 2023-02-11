@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ShoppingCartItem from './ShoppingCartItem';
 
 class ShoppingCart extends React.Component {
+  state = {
+    cart: [],
+  };
+
   componentDidMount() {
-    const { location: { state } } = this.props;
-    console.log(state);
+    this.setState({
+      cart: JSON.parse(localStorage.getItem('cart')) || [],
+    });
   }
 
   render() {
-    const { location: { state } } = this.props;
+    const { cart } = this.state;
     return (
       <div>
-        { state.length === 0
+        { cart.length === 0
           ? <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-          : state.map((product, i) => (
-            <div key={ `${product.id}${i}` }>
-              <h3 data-testid="shopping-cart-product-name">{ product.title }</h3>
-              <h3 data-testid="shopping-cart-product-quantity">1</h3>
-            </div>
+          : cart.map((product, i) => (
+            <ShoppingCartItem
+              key={ `${product.id}${i}` }
+              product={ product }
+            />
           ))}
       </div>
     );

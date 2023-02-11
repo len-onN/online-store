@@ -7,7 +7,6 @@ class Product extends Component {
     super();
     this.state = ({
       product: [],
-      cartProduct: [],
     });
   }
 
@@ -25,17 +24,15 @@ class Product extends Component {
   };
 
   addToCart = (product) => {
-    const { location: state } = this.props;
-    state.state.push(product);
-    // console.log(state);
-    // console.log(product);
-    this.setState({
-      cartProduct: state.state,
-    });
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (!cart.some((item) => item.id === product.id)) {
+      product.quantity = 1;
+      window.localStorage.setItem('cart', JSON.stringify([...cart, product]));
+    }
   };
 
   render() {
-    const { product, cartProduct } = this.state;
+    const { product } = this.state;
     return (
       <div>
         <h2 data-testid="product-detail-name">{ product.title }</h2>
@@ -52,7 +49,7 @@ class Product extends Component {
           Adicionar ao Carrinho
         </button>
         <Link
-          to={ { pathname: '/shopping-cart', state: cartProduct } }
+          to="/shopping-cart"
           data-testid="shopping-cart-button"
         >
           Carrinho de Compras
