@@ -67,7 +67,7 @@ class ShoppingCartItem extends react.Component {
           data-testid="remove-product"
           onClick={ () => this.removeProduct() }
         >
-          Remover
+          Removera
 
         </button>
       </div>
