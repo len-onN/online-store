@@ -5,13 +5,7 @@ class ShoppingCart extends React.Component {
   componentDidMount() {
     const { location: { state } } = this.props;
     console.log(state);
-    this.carListRescue();
   }
-
-  carListRescue = () => {
-    const cartList = JSON.parse(localStorage.getItem('cartList'));
-    console.log(cartList);
-  };
 
   render() {
     const { location: { state } } = this.props;
