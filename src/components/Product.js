@@ -7,6 +7,7 @@ class Product extends Component {
     super();
     this.state = ({
       product: [],
+      cartProduct: [],
     });
   }
 
@@ -23,8 +24,18 @@ class Product extends Component {
     });
   };
 
+  addToCart = (product) => {
+    const { location: state } = this.props;
+    state.state.push(product);
+    // console.log(state);
+    // console.log(product);
+    this.setState({
+      cartProduct: state.state,
+    });
+  };
+
   render() {
-    const { product } = this.state;
+    const { product, cartProduct } = this.state;
     return (
       <div>
         <h2 data-testid="product-detail-name">{ product.title }</h2>
@@ -34,7 +45,16 @@ class Product extends Component {
           alt={ product.title }
         />
         <h4 data-testid="product-detail-price">{ product.price }</h4>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <button
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.addToCart(product) }
+        >
+          Adicionar ao Carrinho
+        </button>
+        <Link
+          to={ { pathname: '/shopping-cart', state: cartProduct } }
+          data-testid="shopping-cart-button"
+        >
           Carrinho de Compras
         </Link>
       </div>
@@ -47,6 +67,14 @@ Product.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
     }).isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        id: PropTypes.string,
+      }),
+    ),
   }).isRequired,
 };
 export default Product;
