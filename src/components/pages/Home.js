@@ -11,6 +11,7 @@ class Home extends Component {
       value: '',
       queryResults: [],
       isQueryDone: false,
+      cartProduct: [],
     });
   }
 
@@ -56,8 +57,17 @@ class Home extends Component {
     });
   };
 
+  addToCart = (product) => {
+    const { cartProduct } = this.state;
+    cartProduct.push(product);
+    this.setState({
+      cartProduct,
+    });
+  };
+
   render() {
-    const { categories, queryResults, isQueryDone, selectedCategoryId } = this.state;
+    const { categories, queryResults, isQueryDone,
+      cartProduct, selectedCategoryId } = this.state;
     // const { results } = queryResults;
     return (
       <div>
@@ -103,7 +113,10 @@ class Home extends Component {
           {' '}
 
         </button>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <Link
+          to={ { pathname: '/shopping-cart', state: cartProduct } }
+          data-testid="shopping-cart-button"
+        >
           Carrinho de Compras
         </Link>
         { queryResults
@@ -116,7 +129,16 @@ class Home extends Component {
                 R$:
                 { product.price }
               </h4>
-              <Link data-testid="product-detail-link" to={ `./product/${product.id}` }>
+              <button
+                data-testid="product-add-to-cart"
+                onClick={ () => this.addToCart(product) }
+              >
+                Adicionar ao Carrinho
+              </button>
+              <Link
+                data-testid="product-detail-link"
+                to={ { pathname: `./product/${product.id}`, state: cartProduct } }
+              >
                 Detalhes do produto
               </Link>
             </div>
