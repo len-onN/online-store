@@ -76,21 +76,6 @@ class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
 
         </h1>
-        {
-          categories.map((category) => (
-            <li key={ category.id }>
-              <input
-                data-testid="category"
-                type="radio"
-                name="categorieList"
-                value={ category.id }
-                checked={ category.id === selectedCategoryId }
-                onChange={ this.radioChange }
-              />
-              <h4>{ category.name }</h4>
-            </li>
-          ))
-        }
         <label
           htmlFor="search"
         >
@@ -118,33 +103,57 @@ class Home extends Component {
         >
           Carrinho de Compras
         </Link>
-        { queryResults
-          .length > 0 && queryResults
-          .map((product) => (
-            <div key={ product.id } data-testid="product">
-              <h3>{ product.title }</h3>
-              <img alt={ product.title } src={ product.thumbnail } />
-              <h4>
-                R$:
-                { product.price }
-              </h4>
-              <button
-                data-testid="product-add-to-cart"
-                onClick={ () => this.addToCart(product) }
-              >
-                Adicionar ao Carrinho
-              </button>
-              <Link
-                data-testid="product-detail-link"
-                to={ `./product/${product.id}` }
-              >
-                Detalhes do produto
-              </Link>
-            </div>
-          ))}
-        {
-          queryResults.length === 0 && isQueryDone && <p>Nenhum produto foi encontrado</p>
-        }
+        <div className="container">
+          <ul>
+            {
+              categories.map((category) => (
+                <li className="categories" key={ category.id }>
+                  <input
+                    data-testid="category"
+                    type="radio"
+                    name="categorieList"
+                    value={ category.id }
+                    checked={ category.id === selectedCategoryId }
+                    onChange={ this.radioChange }
+                  />
+                  <h4>{ category.name }</h4>
+                </li>
+              ))
+            }
+          </ul>
+          <div className="product-list">
+            <ul>
+              { queryResults
+                .length > 0 && queryResults
+                .map((product) => (
+                  <div key={ product.id } data-testid="product">
+                    <h3>{ product.title }</h3>
+                    <img alt={ product.title } src={ product.thumbnail } />
+                    <h4>
+                      R$:
+                      { product.price }
+                    </h4>
+                    <button
+                      data-testid="product-add-to-cart"
+                      onClick={ () => this.addToCart(product) }
+                    >
+                      Adicionar ao Carrinho
+                    </button>
+                    <Link
+                      data-testid="product-detail-link"
+                      to={ `./product/${product.id}` }
+                    >
+                      Detalhes do produto
+                    </Link>
+                  </div>
+                ))}
+            </ul>
+          </div>
+          {
+            queryResults.length === 0 && isQueryDone
+            && <p>Nenhum produto foi encontrado</p>
+          }
+        </div>
       </div>
     );
   }
