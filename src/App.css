@@ -10,7 +10,14 @@
 
 .product-list {
   display: flex;
-  flex-direction: row;
-  width: 40%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.product {
+  display: inline-block;
+  width: 200px;
+  margin: 10px;
 }
 
