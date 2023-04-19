@@ -12,12 +12,16 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%;
+  width: 76%;
+  background-color: rgba(240, 240, 240);
 }
 
 .product {
   display: inline-block;
   width: 200px;
   margin: 10px;
+  background-color: rgba(225, 225, 225);
+  text-align: center;
+  padding: 10px;
 }
 
