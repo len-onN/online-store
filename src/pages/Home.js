@@ -70,53 +70,63 @@ class Home extends Component {
     // const { results } = queryResults;
     return (
       <div>
-        <h1
-          data-testid="home-initial-message"
-        >
-          Digite algum termo de pesquisa ou escolha uma categoria.
+        <div>
+          <h1
+            data-testid="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
 
-        </h1>
-        <label
-          htmlFor="search"
-        >
-          <input
-            data-testid="query-input"
-            type="text"
-            id="search"
-            name="search"
-            onChange={ this.handleChange }
-          />
-        </label>
-        <button
-          data-testid="query-button"
-          type="submit"
-          onClick={ this.handleButton }
-        >
-          {' '}
-          clica
-          {' '}
+          </h1>
+          <label
+            htmlFor="search"
+          >
+            <input
+              data-testid="query-input"
+              type="text"
+              id="search"
+              name="search"
+              onChange={ this.handleChange }
+            />
+          </label>
+          <button
+            data-testid="query-button"
+            type="submit"
+            onClick={ this.handleButton }
+          >
+            {' '}
+            clica
+            {' '}
 
-        </button>
-        <Link
-          to="/shopping-cart"
-          data-testid="shopping-cart-button"
-        >
-          Carrinho de Compras
-        </Link>
+          </button>
+          <Link
+            to="/shopping-cart"
+            data-testid="shopping-cart-button"
+          >
+            Carrinho de Compras
+          </Link>
+        </div>
         <div className="container">
           <ul>
             {
-              categories.map((category) => (
-                <li className="categories" key={ category.id }>
-                  <input
-                    data-testid="category"
-                    type="radio"
-                    name="categorieList"
-                    value={ category.id }
-                    checked={ category.id === selectedCategoryId }
-                    onChange={ this.radioChange }
-                  />
-                  <h4>{ category.name }</h4>
+              categories.map((category, i) => (
+                <li
+                  className="categories"
+                  key={ category.id }
+                >
+                  <label htmlFor={ `categorie${i}` }>
+                    <input
+                      style={ { display: 'inline-block' } }
+                      data-testid="category"
+                      // className="categorieBtn"
+                      id={ `categorie${i}` }
+                      type="radio"
+                      name="categorieList"
+                      value={ category.id }
+                      checked={ category.id === selectedCategoryId }
+                      onChange={ this.radioChange }
+                    />
+                    { category.name }
+                  </label>
                 </li>
               ))
             }
@@ -127,7 +137,7 @@ class Home extends Component {
                 .length > 0 && queryResults
                 .map((product) => (
                   <div key={ product.id } className="product" data-testid="product">
-                    <h3>{ product.title }</h3>
+                    <h3 className="product-title">{ product.title }</h3>
                     <img alt={ product.title } src={ product.thumbnail } />
                     <h4>
                       R$:
@@ -139,12 +149,14 @@ class Home extends Component {
                     >
                       Adicionar ao Carrinho
                     </button>
-                    <Link
-                      data-testid="product-detail-link"
-                      to={ `./product/${product.id}` }
-                    >
-                      Detalhes do produto
-                    </Link>
+                    <div>
+                      <Link
+                        data-testid="product-detail-link"
+                        to={ `./product/${product.id}` }
+                      >
+                        Detalhes do produto
+                      </Link>
+                    </div>
                   </div>
                 ))}
             </ul>

@@ -1,9 +1,11 @@
+
 .categories {
   width: 200px;
 }
 
 .container {
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content:baseline;
 }
@@ -11,17 +13,32 @@
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 76%;
+  justify-content:space-between;
+  width: 71.2%;
   background-color: rgba(240, 240, 240);
 }
 
 .product {
   display: inline-block;
-  width: 200px;
-  margin: 10px;
+  width: 250px;
+  height: 400px;
   background-color: rgba(225, 225, 225);
   text-align: center;
   padding: 10px;
+  margin: 10px;
+}
+
+.product-title {
+  height: 100px;
+}
+
+ul {
+  background-color: rgba(240, 240, 240);
+  padding: 10px;
+  margin: 10px;
+}
+
+li {
+  width: 400px;
 }
 
