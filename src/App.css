@@ -16,7 +16,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content:space-between;
-  width: 71.2%;
+  width: 100%;
   background-color: rgba(240, 240, 240);
 }
 
@@ -37,7 +37,12 @@
 
 .top {
   text-align: center;
-  margin: 15px;
+  background-color: rgba(235, 235, 235);
+  width: 100%;
+  border: 10em;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
 .categoriesList {
