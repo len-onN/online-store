@@ -4,6 +4,8 @@
 }
 
 .container {
+  margin: 0;
+  padding: 0;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -20,10 +22,11 @@
 
 .product {
   display: inline-block;
-  width: 250px;
-  height: 400px;
+  width: 189px;
+  height: 320px;
   background-color: rgba(225, 225, 225);
   text-align: center;
+  font-size: 0.8em;
   padding: 10px;
   margin: 10px;
 }
@@ -32,13 +35,31 @@
   height: 100px;
 }
 
-ul {
+.top {
+  text-align: center;
+  margin: 15px;
+}
+
+.categoriesList {
+
   background-color: rgba(240, 240, 240);
+}
+
+/* .categorieName {
+  background-color: rgba(225, 225, 225);
+} */
+
+ul {
   padding: 10px;
   margin: 10px;
+  list-style-type: none;
 }
 
 li {
   width: 400px;
+}
+
+label {
+  font-size: smaller;
 }
 

@@ -70,7 +70,7 @@ class Home extends Component {
     // const { results } = queryResults;
     return (
       <div>
-        <div>
+        <div className="top">
           <h1
             data-testid="home-initial-message"
           >
@@ -106,31 +106,37 @@ class Home extends Component {
           </Link>
         </div>
         <div className="container">
-          <ul>
-            {
-              categories.map((category, i) => (
-                <li
-                  className="categories"
-                  key={ category.id }
-                >
-                  <label htmlFor={ `categorie${i}` }>
-                    <input
-                      style={ { display: 'inline-block' } }
-                      data-testid="category"
-                      // className="categorieBtn"
-                      id={ `categorie${i}` }
-                      type="radio"
-                      name="categorieList"
-                      value={ category.id }
-                      checked={ category.id === selectedCategoryId }
-                      onChange={ this.radioChange }
-                    />
-                    { category.name }
-                  </label>
-                </li>
-              ))
-            }
-          </ul>
+          <div className="categoriesList">
+            <ul>
+              {
+                categories.map((category, i) => (
+                  <li
+                    className="categories"
+                    key={ category.id }
+                  >
+                    <label htmlFor={ `categorie${i}` }>
+                      <input
+                        style={ { display: 'inline-block' } }
+                        data-testid="category"
+                        // className="categorieBtn"
+                        id={ `categorie${i}` }
+                        type="radio"
+                        name="categorieList"
+                        value={ category.id }
+                        checked={ category.id === selectedCategoryId }
+                        onChange={ this.radioChange }
+                      />
+                      <span className="categorieName">
+                        {' '}
+                        { category.name }
+                        {' '}
+                      </span>
+                    </label>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
           <div className="product-list">
             <ul>
               { queryResults
