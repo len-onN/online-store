@@ -71,12 +71,12 @@ class Home extends Component {
     return (
       <div>
         <div className="top">
-          <h1
+          <h3
             data-testid="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
 
-          </h1>
+          </h3>
           <label
             htmlFor="search"
           >

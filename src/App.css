@@ -63,3 +63,12 @@ label {
   font-size: smaller;
 }
 
+a {
+  display: block;
+  margin: 5px;
+}
+
+h3 {
+  margin: 5px;
+}
+
