@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import { getCategories } from '../services/api';
 // import Product from '../Product';
 
@@ -67,9 +68,15 @@ class Home extends Component {
   render() {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId } = this.state;
+    const videoId = 'mndlsgU_YbI';
+    const opts = {
+      height: '390',
+      width: '640',
+    };
     // const { results } = queryResults;
     return (
       <div>
+
         <div className="top">
           <h3
             data-testid="home-initial-message"
@@ -140,31 +147,32 @@ class Home extends Component {
           <div className="product-list">
             <ul>
               { queryResults
-                .length > 0 && queryResults
-                .map((product) => (
-                  <div key={ product.id } className="product" data-testid="product">
-                    <h3 className="product-title">{ product.title }</h3>
-                    <img alt={ product.title } src={ product.thumbnail } />
-                    <h4>
-                      R$:
-                      { product.price }
-                    </h4>
-                    <button
-                      data-testid="product-add-to-cart"
-                      onClick={ () => this.addToCart(product) }
-                    >
-                      Adicionar ao Carrinho
-                    </button>
-                    <div>
-                      <Link
-                        data-testid="product-detail-link"
-                        to={ `./product/${product.id}` }
+                .length > 0 ? queryResults
+                  .map((product) => (
+                    <div key={ product.id } className="product" data-testid="product">
+                      <h3 className="product-title">{ product.title }</h3>
+                      <img alt={ product.title } src={ product.thumbnail } />
+                      <h4>
+                        R$:
+                        { product.price }
+                      </h4>
+                      <button
+                        data-testid="product-add-to-cart"
+                        onClick={ () => this.addToCart(product) }
                       >
-                        Detalhes do produto
-                      </Link>
+                        Adicionar ao Carrinho
+                      </button>
+                      <div>
+                        <Link
+                          data-testid="product-detail-link"
+                          to={ `./product/${product.id}` }
+                        >
+                          Detalhes do produto
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                : <YouTube videoId={ videoId } opts={ opts } />}
             </ul>
           </div>
           {
