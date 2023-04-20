@@ -94,7 +94,7 @@ class Home extends Component {
             onClick={ this.handleButton }
           >
             {' '}
-            clica
+            Pesquisar
             {' '}
 
           </button>
