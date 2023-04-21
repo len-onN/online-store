@@ -124,18 +124,20 @@ class Home extends Component {
           <div
             className="categoriesList"
           >
-            <h4 className="categories-declare">Categorias:</h4>
-            <button
-              id="cleanerBtn"
-              onClick={ () => {
-                this.setState({
-                  selectedCategoryId: null,
-                  queryResults: [],
-                });
-              } }
-            >
-              Limpar Categoria
-            </button>
+            <div className="header-categories">
+              <h4 className="categories-declare">Categorias:</h4>
+              <button
+                id="cleanerBtn"
+                onClick={ () => {
+                  this.setState({
+                    selectedCategoryId: null,
+                    queryResults: [],
+                  });
+                } }
+              >
+                Limpar Categoria
+              </button>
+            </div>
             <ul>
               {
                 categories.map((category, i) => (
