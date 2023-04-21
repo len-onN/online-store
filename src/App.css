@@ -65,6 +65,11 @@
   background-color: rgba(225, 225, 225);
 } */
 
+.video-container {
+  margin-left: 20%;
+  margin-top: 3%;
+}
+
 ul {
   padding: 10px;
   margin: 10px 0px;

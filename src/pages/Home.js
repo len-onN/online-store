@@ -189,7 +189,10 @@ class Home extends Component {
                       </Link>
                     </div>
                   ))
-                : <YouTube videoId={ videoId } opts={ opts } />}
+                : (
+                  <div className="video-container">
+                    <YouTube videoId={ videoId } opts={ opts } />
+                  </div>)}
             </ul>
           </div>
           {
