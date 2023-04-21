@@ -80,12 +80,13 @@ class Home extends Component {
         <div
           className="top"
         >
-          <h3
+          <h4
+            className="recommend-action"
             data-testid="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
 
-          </h3>
+          </h4>
           <div className="searchBar">
             <label
               htmlFor="search"
@@ -123,6 +124,7 @@ class Home extends Component {
           <div
             className="categoriesList"
           >
+            <h4 className="categories-declare">Categorias:</h4>
             <button
               id="cleanerBtn"
               onClick={ () => {
@@ -137,28 +139,34 @@ class Home extends Component {
             <ul>
               {
                 categories.map((category, i) => (
-                  <li
-                    className="categories"
+                  <div
                     key={ category.id }
+                    className="categories-block"
                   >
-                    <label htmlFor={ `categorie${i}` }>
-                      <input
-                        style={ { display: 'inline-block' } }
-                        data-testid="category"
-                        id={ `categorie${i}` }
-                        type="radio"
-                        name="categorieList"
-                        value={ category.id }
-                        checked={ category.id === selectedCategoryId }
-                        onChange={ this.radioChange }
-                      />
-                      <span className="categorieName">
-                        {' '}
-                        { category.name }
-                        {' '}
-                      </span>
-                    </label>
-                  </li>
+                    <li
+                      className="categories"
+                    >
+                      <label
+                        htmlFor={ `categorie${i}` }
+                      >
+                        <input
+                          style={ { display: 'inline-block' } }
+                          data-testid="category"
+                          id={ `categorie${i}` }
+                          type="radio"
+                          name="categorieList"
+                          value={ category.id }
+                          checked={ category.id === selectedCategoryId }
+                          onChange={ this.radioChange }
+                        />
+                        <span className="categorieName">
+                          {' '}
+                          { category.name }
+                          {' '}
+                        </span>
+                      </label>
+                    </li>
+                  </div>
                 ))
               }
             </ul>
