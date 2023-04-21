@@ -69,7 +69,8 @@ label {
 }
 
 a {
-  display: inline;
+  display: inline-block;
+  align-self: flex-start;
   margin: 5px;
 }
 

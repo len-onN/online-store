@@ -110,12 +110,14 @@ class Home extends Component {
 
             </button>
           </div>
-          <Link
-            to="/shopping-cart"
-            data-testid="shopping-cart-button"
-          >
-            Carrinho de Compras
-          </Link>
+          <div>
+            <Link
+              to="/shopping-cart"
+              data-testid="shopping-cart-button"
+            >
+              Carrinho de Compras
+            </Link>
+          </div>
         </div>
         <div className="container">
           <div
@@ -130,7 +132,7 @@ class Home extends Component {
                 });
               } }
             >
-              Limpar Filtros
+              Limpar Categoria
             </button>
             <ul>
               {
@@ -143,7 +145,6 @@ class Home extends Component {
                       <input
                         style={ { display: 'inline-block' } }
                         data-testid="category"
-                        // className="categorieBtn"
                         id={ `categorie${i}` }
                         type="radio"
                         name="categorieList"
@@ -180,14 +181,12 @@ class Home extends Component {
                       >
                         Adicionar ao Carrinho
                       </button>
-                      <div>
-                        <Link
-                          data-testid="product-detail-link"
-                          to={ `./product/${product.id}` }
-                        >
-                          Detalhes do produto
-                        </Link>
-                      </div>
+                      <Link
+                        data-testid="product-detail-link"
+                        to={ `./product/${product.id}` }
+                      >
+                        Detalhes do produto
+                      </Link>
                     </div>
                   ))
                 : <YouTube videoId={ videoId } opts={ opts } />}
