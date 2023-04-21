@@ -169,8 +169,8 @@ class Home extends Component {
                 .length > 0 ? queryResults
                   .map((product) => (
                     <div key={ product.id } className="product" data-testid="product">
-                      <h3 className="product-title">{ product.title }</h3>
                       <img alt={ product.title } src={ product.thumbnail } />
+                      <p className="product-title">{ product.title }</p>
                       <h4>
                         R$:
                         { product.price }
