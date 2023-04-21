@@ -77,34 +77,39 @@ class Home extends Component {
     return (
       <div>
 
-        <div className="top">
+        <div
+          className="top"
+        >
           <h3
             data-testid="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
 
           </h3>
-          <label
-            htmlFor="search"
-          >
-            <input
-              data-testid="query-input"
-              type="text"
-              id="search"
-              name="search"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <button
-            data-testid="query-button"
-            type="submit"
-            onClick={ this.handleButton }
-          >
-            {' '}
-            Pesquisar
-            {' '}
+          <div className="searchBar">
+            <label
+              htmlFor="search"
+            >
+              <input
+                data-testid="query-input"
+                type="text"
+                id="search"
+                name="search"
+                onChange={ this.handleChange }
+              />
+            </label>
 
-          </button>
+            <button
+              data-testid="query-button"
+              type="submit"
+              onClick={ this.handleButton }
+            >
+              {' '}
+              Pesquisar
+              {' '}
+
+            </button>
+          </div>
           <Link
             to="/shopping-cart"
             data-testid="shopping-cart-button"
@@ -113,7 +118,20 @@ class Home extends Component {
           </Link>
         </div>
         <div className="container">
-          <div className="categoriesList">
+          <div
+            className="categoriesList"
+          >
+            <button
+              id="cleanerBtn"
+              onClick={ () => {
+                this.setState({
+                  selectedCategoryId: null,
+                  queryResults: [],
+                });
+              } }
+            >
+              Limpar Filtros
+            </button>
             <ul>
               {
                 categories.map((category, i) => (
