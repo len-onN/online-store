@@ -68,7 +68,7 @@ class Home extends Component {
   render() {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId } = this.state;
-    const videoId = 'mndlsgU_YbI';
+    const videoId = 'lrULWBW7gQo';
     const opts = {
       height: '390',
       width: '640',
