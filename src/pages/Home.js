@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getCategories } from '../services/api';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { getCategories } from '../services/api';
 
 // import Product from '../Product';
 
@@ -103,16 +103,14 @@ class Home extends Component {
               />
             </label>
 
-            <button
+            <FontAwesomeIcon
               data-testid="query-button"
               type="submit"
+              className="searchButton"
               onClick={ this.handleButton }
-            >
-              {' '}
-              <FontAwesomeIcon icon={ faSearch } />
-              {' '}
+              icon={ faSearch }
+            />
 
-            </button>
           </div>
           <div>
             <Link
@@ -135,6 +133,7 @@ class Home extends Component {
                   this.setState({
                     selectedCategoryId: null,
                     queryResults: [],
+                    isQueryDone: false,
                   });
                 } }
               >
@@ -179,39 +178,40 @@ class Home extends Component {
           <div className="product-list">
             <ul>
               { queryResults
-                .length > 0 ? queryResults
-                  .map((product) => (
-                    <div key={ product.id } className="product" data-testid="product">
-                      <img alt={ product.title } src={ product.thumbnail } />
-                      <p className="product-title">{ product.title }</p>
-                      <h4>
-                        R$:
-                        { product.price }
-                      </h4>
-                      <button
-                        data-testid="product-add-to-cart"
-                        onClick={ () => this.addToCart(product) }
-                      >
-                        Adicionar ao Carrinho
-                      </button>
-                      <Link
-                        data-testid="product-detail-link"
-                        to={ `./product/${product.id}` }
-                      >
-                        Detalhes do produto
-                      </Link>
-                    </div>
-                  ))
-                : (
-                  <div className="video-container">
-                    <YouTube videoId={ videoId } opts={ opts } />
-                  </div>)}
+                .length > 0 && queryResults
+                .map((product) => (
+                  <div key={ product.id } className="product" data-testid="product">
+                    <img alt={ product.title } src={ product.thumbnail } />
+                    <p className="product-title">{ product.title }</p>
+                    <h4>
+                      R$:
+                      { product.price }
+                    </h4>
+                    <button
+                      data-testid="product-add-to-cart"
+                      onClick={ () => this.addToCart(product) }
+                    >
+                      Adicionar ao Carrinho
+                    </button>
+                    <Link
+                      data-testid="product-detail-link"
+                      to={ `./product/${product.id}` }
+                    >
+                      Detalhes do produto
+                    </Link>
+                  </div>
+                ))}
+              { !isQueryDone && (
+                <div className="video-container">
+                  <YouTube videoId={ videoId } opts={ opts } />
+                </div>
+              )}
+              {
+                queryResults.length === 0 && isQueryDone
+            && <p>Nenhum produto foi encontrado</p>
+              }
             </ul>
           </div>
-          {
-            queryResults.length === 0 && isQueryDone
-            && <p>Nenhum produto foi encontrado</p>
-          }
         </div>
       </div>
     );
