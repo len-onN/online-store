@@ -147,6 +147,7 @@ class Home extends Component {
                        selectedCategoryId: null,
                        queryResults: [],
                        isQueryDone: false,
+                       barsOn: false,
                      });
                    } }
                    icon={ faTrashCanArrowUp }
