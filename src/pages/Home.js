@@ -130,6 +130,7 @@ class Home extends Component {
               <h4 className="categories-declare">Categorias:</h4>
               <FontAwesomeIcon
                 type="button"
+                style={ barsOn ? { color: 'blue' } : { color: 'black' } }
                 onClick={ () => this.setState(
                   () => {},
                   this.setState({ barsOn: !barsOn }),
