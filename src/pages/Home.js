@@ -2,7 +2,8 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faTrashCanArrowUp,
+  faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
 
 // import Product from '../Product';
@@ -118,7 +119,9 @@ class Home extends Component {
               to="/shopping-cart"
               data-testid="shopping-cart-button"
             >
-              Carrinho de Compras
+              Carrinho
+              {/*  de Compras */}
+              <FontAwesomeIcon className="chartIcon" icon={ faCartShopping } />
             </Link>
           </div>
         </div>

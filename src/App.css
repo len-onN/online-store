@@ -126,6 +126,10 @@
   font-weight:bolder;
 }
 
+.chartIcon {
+  margin-left: 0.5em;
+}
+
 ul {
   padding: 0;
   margin: 0;
