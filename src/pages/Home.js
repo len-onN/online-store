@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars, faTrashCanArrowUp,
+import { faSearch, faBars, faTrash,
   faCartShopping, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
 
@@ -153,7 +153,7 @@ class Home extends Component {
                        barsOn: false,
                      });
                    } }
-                   icon={ faTrashCanArrowUp }
+                   icon={ faTrash }
                  />
                )}
             </div>
