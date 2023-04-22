@@ -85,8 +85,8 @@
   border-top: 35px solid rgba(170, 170, 170);
   /* border-color: rgba(200, 200, 200); */
   border-radius: 8%;
-  box-shadow: inset 0 0 10px rgba(150, 150 , 150);
-  background-color: rgba(225, 225, 225, 0.3);
+  /* box-shadow: inset 0 0 10px 0 rgba(150, 150 , 150); */
+  background-color: rgba(200, 200, 200, 0.4);
   text-align: center;
   font-size: 0.8em;
   padding: 0.8em;
