@@ -40,7 +40,7 @@ class Home extends Component {
   };
 
   handleButton = async () => {
-    const { value, queryResults } = this.state;
+    const { value } = this.state;
     const queryAns = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${value}`);
     const queryAnsOk = await queryAns.json();
     const finalAns = queryAnsOk;
@@ -49,7 +49,7 @@ class Home extends Component {
         queryResults: finalAns.results,
         isQueryDone: true,
       },
-      () => console.log(queryResults),
+      () => this.setState({ barsOn: true }),
     );
   };
 
