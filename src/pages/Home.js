@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faTrashCanArrowUp,
-  faCartShopping, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+  faCartShopping, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
 
 // import Product from '../Product';
@@ -210,7 +210,7 @@ class Home extends Component {
                       onClick={ () => this.addToCart(product) }
                     >
                       <FontAwesomeIcon
-                        icon={ faCartPlus }
+                        icon={ faCartArrowDown }
                         size="2xl"
                       />
                     </button>
