@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars, faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
 
 // import Product from '../Product';
@@ -127,8 +127,8 @@ class Home extends Component {
             className="categoriesList"
           >
             <div className="header-categories">
-              <h4 className="categories-declare">Categorias:</h4>
               <FontAwesomeIcon
+                id="categorie-bar"
                 type="button"
                 style={ barsOn ? { color: 'blue' } : { color: 'black' } }
                 onClick={ () => this.setState(
@@ -137,9 +137,10 @@ class Home extends Component {
                 ) }
                 icon={ faBars }
               />
+              <h4 className="categories-declare">Categorias</h4>
               {barsOn
                && (
-                 <button
+                 <FontAwesomeIcon
                    id="cleanerBtn"
                    onClick={ () => {
                      this.setState({
@@ -148,9 +149,9 @@ class Home extends Component {
                        isQueryDone: false,
                      });
                    } }
-                 >
-                   Limpar Categoria
-                 </button>)}
+                   icon={ faTrashCanArrowUp }
+                 />
+               )}
             </div>
             <ul>
               {

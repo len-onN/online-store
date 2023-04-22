@@ -14,7 +14,6 @@
 
 .header-categories {
   border-top: 1px solid rgba(200, 200, 200);
-  border-left: 1px solid rgba(200, 200, 200);
   border-bottom: 1px solid rgba(200, 200, 200);
   padding-bottom: 1.3em;
   width: 220px;
@@ -34,7 +33,7 @@
 
 .categories-declare {
   display: inline-block;
-  margin-left: 30%;
+  margin-left: 20%;
   font-weight: 550;
   color:rgb(100, 100, 100);
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -42,6 +41,9 @@
 .categoriesList {
   background-color: rgba(240, 240, 240);
   margin-left: 10px;
+  border-left: 1px solid rgb(200, 200, 200);
+  border-bottom: 1px solid rgb(200, 200, 200);
+
 }
 
 .categorie-item {
@@ -69,9 +71,7 @@
   justify-content:space-between;
   width: 100%;
   background-color: rgba(240, 240, 240);
-  border-top: 1px solid rgba(200, 200 , 200);
-  border-right: 1px solid rgba(200, 200, 200);
-  border-left: 1px solid rgba(200, 200, 200);
+  border: 1px solid rgba(200, 200 , 200);
   padding-right: 2.5%;
   padding-left: 2.5%;
 }
@@ -151,10 +151,17 @@ h4 {
 }
 
 img {
-  border: 1px solid;
+  /* border: 1px solid; */
   border-radius: 15%;
 }
 
 #cleanerBtn {
-  margin: 4% 0px 0px 22%;
+  cursor: pointer;
+  margin-left: 12%;
+}
+
+#categorie-bar {
+  margin-left: 10%;
+  margin-top: 7%;
+  cursor: pointer;
 }
