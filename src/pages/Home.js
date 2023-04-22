@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
 
 // import Product from '../Product';
@@ -15,6 +15,7 @@ class Home extends Component {
       value: '',
       queryResults: [],
       isQueryDone: false,
+      barsOn: false,
     });
   }
 
@@ -45,7 +46,8 @@ class Home extends Component {
     this.setState(
       {
         queryResults: finalAns.results,
-        isQueryDone: true },
+        isQueryDone: true,
+      },
       () => console.log(queryResults),
     );
   };
@@ -70,7 +72,7 @@ class Home extends Component {
 
   render() {
     const { categories, queryResults, isQueryDone,
-      selectedCategoryId } = this.state;
+      selectedCategoryId, barsOn } = this.state;
     const videoId = 'lrULWBW7gQo';
     const opts = {
       height: '390',
@@ -87,7 +89,7 @@ class Home extends Component {
             className="recommend-action"
             data-testid="home-initial-message"
           >
-            Digite algum termo de pesquisa ou escolha uma categoria.
+            Digite algum termo de pesquisa ou escolha uma categoria:
 
           </h4>
           <div className="searchBar">
@@ -110,7 +112,6 @@ class Home extends Component {
               onClick={ this.handleButton }
               icon={ faSearch }
             />
-
           </div>
           <div>
             <Link
@@ -127,22 +128,32 @@ class Home extends Component {
           >
             <div className="header-categories">
               <h4 className="categories-declare">Categorias:</h4>
-              <button
-                id="cleanerBtn"
-                onClick={ () => {
-                  this.setState({
-                    selectedCategoryId: null,
-                    queryResults: [],
-                    isQueryDone: false,
-                  });
-                } }
-              >
-                Limpar Categoria
-              </button>
+              <FontAwesomeIcon
+                type="button"
+                onClick={ () => this.setState(
+                  () => {},
+                  this.setState({ barsOn: !barsOn }),
+                ) }
+                icon={ faBars }
+              />
+              {barsOn
+               && (
+                 <button
+                   id="cleanerBtn"
+                   onClick={ () => {
+                     this.setState({
+                       selectedCategoryId: null,
+                       queryResults: [],
+                       isQueryDone: false,
+                     });
+                   } }
+                 >
+                   Limpar Categoria
+                 </button>)}
             </div>
             <ul>
               {
-                categories.map((category, i) => (
+                barsOn && categories.map((category, i) => (
                   <div
                     key={ category.id }
                     className="categories-block"
