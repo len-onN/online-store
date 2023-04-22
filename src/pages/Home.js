@@ -1,7 +1,10 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCategories } from '../services/api';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 // import Product from '../Product';
 
 class Home extends Component {
@@ -106,7 +109,7 @@ class Home extends Component {
               onClick={ this.handleButton }
             >
               {' '}
-              Pesquisar
+              <FontAwesomeIcon icon={ faSearch } />
               {' '}
 
             </button>
