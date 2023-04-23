@@ -75,7 +75,7 @@ class Home extends Component {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId, barsOn } = this.state;
     const videoId = 'lrULWBW7gQo';
-    const limitTitle = 89;
+    const limitTitle = 65;
     const opts = {
       height: '390',
       width: '640',
