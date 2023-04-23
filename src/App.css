@@ -126,6 +126,7 @@
   text-align: center;
   background-color: rgba(235, 235, 235);
   border: 1px solid rgb(200, 200, 200);
+  border-bottom: none;
   margin: 0 1% 0 1%;
 }
 

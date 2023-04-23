@@ -120,7 +120,6 @@ class Home extends Component {
               data-testid="shopping-cart-button"
             >
               Carrinho
-              {/*  de Compras */}
               <FontAwesomeIcon className="chartIcon" icon={ faCartShopping } />
             </Link>
           </div>
