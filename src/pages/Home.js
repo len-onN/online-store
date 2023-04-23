@@ -75,11 +75,11 @@ class Home extends Component {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId, barsOn } = this.state;
     const videoId = 'lrULWBW7gQo';
+    const limitTitle = 89;
     const opts = {
       height: '390',
       width: '640',
     };
-    // const { results } = queryResults;
     return (
       <div>
 
@@ -199,7 +199,11 @@ class Home extends Component {
                 .map((product) => (
                   <div key={ product.id } className="product" data-testid="product">
                     <img alt={ product.title } src={ product.thumbnail } />
-                    <p className="product-title">{ product.title }</p>
+                    <p className="product-title">
+                      { product.title.slice().length > limitTitle ? `${product
+                        .title.slice(0, limitTitle)}...` : product.title }
+
+                    </p>
                     <h4>
                       R$:
                       { product.price }
