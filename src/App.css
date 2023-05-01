@@ -173,6 +173,7 @@ h4 {
 img {
   /* border: 1px solid; */
   border-radius: 15%;
+  height: 34%;
 }
 
 #cleanerBtn {
