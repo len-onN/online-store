@@ -127,13 +127,13 @@
   background-color: rgba(235, 235, 235);
   border: 1px solid rgb(200, 200, 200);
   border-bottom: none;
-  margin: 0 1% 0 1%;
+  margin: 0 1% 0 10px;
 }
 
 
 .video-container {
-  margin-left: 20%;
-  margin-top: 3%;
+  margin-left: 6em;
+  margin-top: 3em
 }
 
 .recommend-action {
