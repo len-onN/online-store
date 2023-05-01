@@ -140,21 +140,19 @@ class Home extends Component {
                 icon={ faBars }
               />
               <h4 className="categories-declare">Categorias</h4>
-              {barsOn
-               && (
-                 <FontAwesomeIcon
-                   id="cleanerBtn"
-                   onClick={ () => {
-                     this.setState({
-                       selectedCategoryId: null,
-                       queryResults: [],
-                       isQueryDone: false,
-                       barsOn: false,
-                     });
-                   } }
-                   icon={ faTrash }
-                 />
-               )}
+              <FontAwesomeIcon
+                id="cleanerBtn"
+                className={ barsOn ? 'ctg-On' : 'ctg-Off' }
+                onClick={ () => {
+                  this.setState({
+                    selectedCategoryId: null,
+                    queryResults: [],
+                    isQueryDone: false,
+                    barsOn: false,
+                  });
+                } }
+                icon={ faTrash }
+              />
             </div>
             <ul>
               {
