@@ -158,10 +158,11 @@ class Home extends Component {
             </div>
             <ul>
               {
-                barsOn && categories.map((category, i) => (
+                categories.map((category, i) => (
                   <div
                     key={ category.id }
-                    className="categories-block"
+                    className={ barsOn ? 'categories-block ctg-On'
+                      : 'categories-block ctg-Off' }
                   >
                     <li
                       className="categories"
