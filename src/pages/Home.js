@@ -86,14 +86,17 @@ class Home extends Component {
         <div
           className="top"
         >
-          <h4
-            className="recommend-action"
-            data-testid="home-initial-message"
+          <div
+            className="searchBar"
           >
-            Digite algum termo de pesquisa ou escolha uma categoria:
+            <span
+              className="recommend-action"
+              data-testid="home-initial-message"
+            >
+              Digite algum termo de pesquisa ou escolha uma categoria:
+              { ' ' }
 
-          </h4>
-          <div className="searchBar">
+            </span>
             <label
               htmlFor="search"
             >
@@ -114,7 +117,9 @@ class Home extends Component {
               icon={ faSearch }
             />
           </div>
-          <div>
+          <div
+            className="fixedCart"
+          >
             <Link
               to="/shopping-cart"
               data-testid="shopping-cart-button"
