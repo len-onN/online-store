@@ -208,8 +208,7 @@ class Home extends Component {
 
                     </p>
                     <h4>
-                      R$:
-                      { product.price }
+                      { `R$: ${product.price}` }
                     </h4>
                     <button
                       className="add-product-btn"
