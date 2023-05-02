@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faTrash,
-  faCartShopping, faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
+  faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { getCategories } from '../services/api';
-
-// import Product from '../Product';
+import ProductList from '../components/ProductList';
 
 class Home extends Component {
   constructor(props) {
@@ -49,7 +48,7 @@ class Home extends Component {
         queryResults: finalAns.results,
         isQueryDone: true,
       },
-      () => this.setState({ barsOn: true }),
+      () => { this.setState({ barsOn: true }); },
     );
   };
 
@@ -63,19 +62,10 @@ class Home extends Component {
     });
   };
 
-  addToCart = (product) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (!cart.some((item) => item.id === product.id)) {
-      product.quantity = 1;
-      window.localStorage.setItem('cart', JSON.stringify([...cart, product]));
-    }
-  };
-
   render() {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId, barsOn } = this.state;
     const videoId = 'lrULWBW7gQo';
-    const limitTitle = 65;
     const opts = {
       height: '390',
       width: '640',
@@ -198,37 +188,7 @@ class Home extends Component {
           <div className="product-list">
             <ul>
               { queryResults
-                .length > 0 && queryResults
-                .map((product) => (
-                  <div key={ product.id } className="product" data-testid="product">
-                    <img alt={ product.title } src={ product.thumbnail } />
-                    <p className="product-title">
-                      { product.title.slice().length > limitTitle ? `${product
-                        .title.slice(0, limitTitle)}...` : product.title }
-
-                    </p>
-                    <h4>
-                      { `R$: ${product.price}` }
-                    </h4>
-                    <button
-                      className="add-product-btn"
-                      data-testid="product-add-to-cart"
-                      onClick={ () => this.addToCart(product) }
-                    >
-                      <FontAwesomeIcon
-                        icon={ faCartArrowDown }
-                        size="2xl"
-                      />
-                    </button>
-                    <Link
-                      className="product-detail-link"
-                      data-testid="product-detail-link"
-                      to={ `./product/${product.id}` }
-                    >
-                      Detalhes do produto
-                    </Link>
-                  </div>
-                ))}
+                .length > 0 && <ProductList queryResults={ queryResults } />}
               { !isQueryDone && (
                 <div className="video-container">
                   <YouTube videoId={ videoId } opts={ opts } />
