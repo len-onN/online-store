@@ -16,7 +16,7 @@
 .header-categories {
   border-top: 1px solid rgba(200, 200, 200);
   border-bottom: 1px solid rgba(200, 200, 200);
-  padding-bottom: 1.3em;
+  padding-bottom: 1em;
   width: 220px;
 }
 
@@ -27,6 +27,7 @@
 
 .categorieName {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.04em;
   color: rgb(100, 100, 100);
   font-weight:450;
   margin-bottom: 10px;
@@ -34,6 +35,7 @@
 
 .categories-declare {
   display: inline-block;
+  font-size: 1.1em;
   margin-left: 15%;
   font-weight: 550;
   color:rgb(100, 100, 100);
