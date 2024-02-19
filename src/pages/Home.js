@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars, faTrash,
   faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -65,11 +64,6 @@ class Home extends Component {
   render() {
     const { categories, queryResults, isQueryDone,
       selectedCategoryId, barsOn } = this.state;
-    const videoId = 'lrULWBW7gQo';
-    const opts = {
-      height: '390',
-      width: '640',
-    };
     return (
       <div>
 
@@ -189,11 +183,6 @@ class Home extends Component {
             <ul>
               { queryResults
                 .length > 0 && <ProductList queryResults={ queryResults } />}
-              { !isQueryDone && (
-                <div className="video-container">
-                  <YouTube videoId={ videoId } opts={ opts } />
-                </div>
-              )}
               {
                 queryResults.length === 0 && isQueryDone
             && <p>Nenhum produto foi encontrado</p>
